@@ -12,6 +12,7 @@ const GlobalStyle = createGlobalStyle`
     }
 
     *{
+        font-family: 'Lexend Deca';
         box-sizing: border-box;
     }
 `

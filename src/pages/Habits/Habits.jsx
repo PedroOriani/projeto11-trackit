@@ -13,10 +13,16 @@ export default function Habits(){
                         <p>Meus hábitos</p>
                         <SCButtonAdd>+</SCButtonAdd>
                     </SCHabitsSup>
-                    <SCInputAdd>
+                    <SCAddHabito>
                         <SCInputHabito type="text" placeholder="nome do hábito"></SCInputHabito>
-                        <Days />
-                    </SCInputAdd>
+                        <SCDivDays>
+                            <Days />
+                        </SCDivDays>
+                        <SCDivButtons>
+                            <SCCancel>Cancelar</SCCancel>
+                            <SCSave>Salvar</SCSave>
+                        </SCDivButtons>
+                    </SCAddHabito>
                     <p>Você não tem nenhum hábito cadastrado ainda. Adicione um hábito para começar a trackear!</p>
                 </SCContainerHabits>
             </SCBodyHabits>
@@ -33,6 +39,7 @@ const SCContainerHabits = styled.div`
 
     p{
         margin-top: 30px;
+        display: block;
     }
 `
 
@@ -45,10 +52,12 @@ const SCHabitsSup = styled.div`
 
     p{
         font-weight: 400;
-        font-size: 22.976px;
+        font-size: 23px;
         line-height: 29px;
 
         color: #126BA5;
+
+        margin-top: 0;
     }
 `
 
@@ -68,7 +77,7 @@ const SCButtonAdd = styled.button`
     border: none;
 `
 
-const SCInputAdd = styled.div`
+const SCAddHabito = styled.div`
     width: 340px;
     height: 180px;
 
@@ -102,4 +111,63 @@ const SCInputHabito = styled.input`
         
         color: #DBDBDB;
     }
+`
+
+const SCDivDays = styled.div`
+    width: 234px;
+
+    margin-top: 8px;
+
+    display: flex;
+    justify-content: space-between;
+
+
+`
+
+const SCDivButtons = styled.div`
+    display: flex;
+    align-items: center;
+
+    padding: 29px 0 0 129px ;
+`
+
+const SCCancel = styled.button`
+    width:69px;
+    height: 20px;
+
+    font-weight: 400;
+    font-size: 15.976px;
+    line-height: 20px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    color: #52B6FF;
+
+    background: none;
+
+    border: none;
+`
+
+const SCSave = styled.button`
+    width: 84px;
+    height: 35px;
+
+    font-weight: 400;
+    font-size: 15.976px;
+    line-height: 20px;
+
+    margin-left: 23px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    color:#FFFFFF;
+
+    background: #52B6FF;
+
+    border-radius: 4.63636px;
+    border: none;
 `
