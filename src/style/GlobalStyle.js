@@ -8,7 +8,7 @@ const GlobalStyle = createGlobalStyle`
     line-height: 22px;
 
     color: #666666;
-    background-color: #E5E5E5;
+    background-color: #F2F2F2;
     }
 
     *{

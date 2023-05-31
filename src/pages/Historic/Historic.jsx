@@ -14,6 +14,4 @@ export default function Historic(){
 
 const SCBodyHistoric = styled.div`
     padding-top: 70px;
-
-    background: #E5E5E5;
 `

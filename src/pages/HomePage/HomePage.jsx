@@ -40,13 +40,9 @@ const SCInputLogIn = styled.input`
 
     font-weight: 400;
     font-size: 19px;
-    line-height: 25px;
 
     ::placeholder{
         color: #D4D4D4;
-
-        padding: 0 11px 0 0;
-        left: 25px;
 
         font-family: 'Lexend Deca', sans-serif;
     }
