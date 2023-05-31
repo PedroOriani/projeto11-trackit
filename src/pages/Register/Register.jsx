@@ -5,10 +5,30 @@ export default function Register(){
         <SCRegister>
             <SCLogo src='../src/assets/logo.png'></SCLogo>
             <form>
-                <SCInputRegister type="email" placeholder='email'/>
-                <SCInputRegister type="password" placeholder='senha'/>
-                <SCInputRegister type="text" placeholder='nome'/>
-                <SCInputRegister type="text" placeholder='foto'/>
+                <SCInputRegister 
+                type="email" 
+                placeholder='email'
+                // value={}
+                // onChange={}
+                />
+                <SCInputRegister 
+                type="password" 
+                placeholder='senha'
+                // value={}
+                // onChange={}
+                />
+                <SCInputRegister 
+                type="text" 
+                placeholder='nome'
+                // value={}
+                // onChange={}
+                />
+                <SCInputRegister 
+                type="text" 
+                placeholder='foto'
+                // value={}
+                // onChange={}
+                />
                 <SCSUbmitRegister type="submit"/>
                 <SCTextResgister>Não tem uma conta? Cadastre-se!</SCTextResgister>
             </form>
@@ -47,7 +67,12 @@ const SCInputRegister = styled.input`
 
     ::placeholder{
         color: #D4D4D4;
-        margin-left: 11px;
+
+        font-weight: 400;
+        font-size: 19.976px;
+        line-height: 25px;
+
+        font-family: 'Lexend Deca', sans-serif;
     }
 `
 

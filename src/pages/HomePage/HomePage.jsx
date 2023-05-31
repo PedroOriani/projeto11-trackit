@@ -39,13 +39,16 @@ const SCInputLogIn = styled.input`
     border-radius: 5px;
 
     font-weight: 400;
-    font-size: 19.976px;
+    font-size: 19px;
     line-height: 25px;
-
 
     ::placeholder{
         color: #D4D4D4;
-        margin-left: 11px;
+
+        padding: 0 11px 0 0;
+        left: 25px;
+
+        font-family: 'Lexend Deca', sans-serif;
     }
 `
 
