@@ -2,6 +2,7 @@ import styled from "styled-components"
 import Header from "../components/Header"
 import Footer from "../components/Footer"
 import Days from '../components/Days'
+import {BsFillCheckSquareFill} from 'react-icons/Bs'
 
 export default function Habits(){
     return(
