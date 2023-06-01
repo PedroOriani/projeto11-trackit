@@ -1,10 +1,25 @@
-import styled from "styled-components"
+import styled from "styled-components";
+import { CircularProgressbar, buildStyles } from 'react-circular-progressbar';
+import 'react-circular-progressbar/dist/styles.css';
 
 export default function Footer(){
+
+    const percentage = 33;
+
     return(
         <SCFooter>
             <SCTextFooter>Hábitos</SCTextFooter>
-            <SCPorcentage></SCPorcentage>
+            <SCPorcentage 
+            value={percentage} 
+            text='Hoje'
+            background
+            backgroundPadding={6}
+            styles={buildStyles({
+                backgroundColor: "#52B6FF",
+                textColor: "#FFFFFF",
+                pathColor: "#FFFFFF",
+                trailColor: "transparent"
+            })}/>
             <SCTextFooter>Histórico</SCTextFooter>
         </SCFooter>
     );
@@ -35,15 +50,16 @@ const SCTextFooter = styled.p`
     color: #52B6FF;
 `
 
-const SCPorcentage = styled.div`
+const SCPorcentage = styled(CircularProgressbar)`
     width: 91px;
     height: 91px;
-
-    background: #52B6FF;
     
     position: fixed;
     left: 139.5px;
     bottom: 10px;
 
-    border-radius: 45.5px;
+    font-weight: 400;
+    font-size: 17.976px;
+    line-height: 22px;
+    text-align: center;
 `

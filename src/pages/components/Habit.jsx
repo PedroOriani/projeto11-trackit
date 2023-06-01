@@ -3,31 +3,32 @@ import {BsFillCheckSquareFill} from 'react-icons/Bs'
 
 export default function Habit() {
 
-    const habits = {
-            "id": 3,
-            "name": "Acordar",
-            "done": true,
-            "currentSequence": 1,
-            "highestSequence": 1
-        }
+    const habits = [
+        { "id": 3 , "name": "Acordar" , "done": true , "currentSequence": 1 , "highestSequence": 1 }, 
+        { "id": 4 , "name": "Dormir" , "done": true , "currentSequence": 3 , "highestSequence": 18},
+        { "id": 5 , "name": "Comer" , "done": true , "currentSequence": 11 , "highestSequence": 11},
+        { "id": 3 , "name": "Acordar" , "done": true , "currentSequence": 1 , "highestSequence": 1 }, 
+        { "id": 4 , "name": "Dormir" , "done": true , "currentSequence": 3 , "highestSequence": 18},
+        { "id": 5 , "name": "Comer" , "done": true , "currentSequence": 11 , "highestSequence": 11}
+    ];
 
     return(
-        //habits.map((habit, i) => {
-            <SCHabit>
+        habits.map((habit, i) => (
+            <SCHabit key={i}>
                 <SCContainerText>
-                    <SCTitle>{habits.name}</SCTitle>
+                    <SCTitle>{habit.name}</SCTitle>
                     <SCContainerSequence>
                         <SCSequence>Sequência atual:</SCSequence>
-                        <SCSequenceDays>{habits.currentSequence}</SCSequenceDays>
+                        <SCSequenceDays>{habit.currentSequence}</SCSequenceDays>
                     </SCContainerSequence>
                     <SCContainerRecord>
                         <SCRecord>Seu record:</SCRecord>
-                        <SCRecordDays>{habits.highestSequence}</SCRecordDays>
+                        <SCRecordDays>{habit.highestSequence}</SCRecordDays>
                     </SCContainerRecord>
                 </SCContainerText>
                 <SCbuttonCheck/>
             </SCHabit>
-        //})
+        ))
     );
 }
 
