@@ -24,7 +24,7 @@ const SCBodyToday = styled.div`
     height: 100%;
 
     padding-top: 70px;
-    padding-bottom: 70px;
+    padding-bottom: 80px;
 `
 
 const SCContainerToday = styled.div`

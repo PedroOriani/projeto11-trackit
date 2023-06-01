@@ -12,6 +12,10 @@ export default function Habit() {
         { "id": 5 , "name": "Comer" , "done": true , "currentSequence": 11 , "highestSequence": 11}
     ];
 
+    function checkTask (i){
+        
+    }
+
     return(
         habits.map((habit, i) => (
             <SCHabit key={i}>
@@ -26,7 +30,7 @@ export default function Habit() {
                         <SCRecordDays>{habit.highestSequence}</SCRecordDays>
                     </SCContainerRecord>
                 </SCContainerText>
-                <SCbuttonCheck/>
+                <SCbuttonCheck onClick={() => checkTask(i)}/>
             </SCHabit>
         ))
     );
