@@ -1,6 +1,7 @@
 import styled from 'styled-components'
 import logo from '../../assets/logo.svg'
 import { Link } from 'react-router-dom'
+import { ThreeDots } from 'react-loader-spinner'
 
 export default function HomePage(){
     return (

@@ -1,4 +1,5 @@
 import styled from 'styled-components'
+import logo from '../../assets/logo.svg'
 import { Link } from 'react-router-dom'
 import { useState } from 'react'
 
@@ -9,35 +10,42 @@ export default function Register(){
     const [name, setName] = useState('')
     const [urlImage, setUrlImage] = useState('')
 
+    const registerObj = {
+        email: email,
+        password: password,
+        name: name,
+        urlImage: urlImage,
+    }
+
     return(
         <SCRegister>
-            <SCLogo src='../src/assets/logo.png'></SCLogo>
+            <SCLogo src={logo}></SCLogo>
             <form>
                 <SCInputRegister 
                 type="email" 
                 placeholder='email'
                 value={email}
-                onChange={setEmail}
+                onChange={(e) => setEmail(e.target.value)}
                 />
                 <SCInputRegister 
                 type="password" 
                 placeholder='senha'
                 value={password}
-                onChange={setPassword}
+                onChange={(e) => setPassword(e.target.value)}
                 />
                 <SCInputRegister 
                 type="text" 
                 placeholder='nome'
                 value={name}
-                onChange={setName}
+                onChange={(e) => setName(e.target.value)}
                 />
                 <SCInputRegister 
                 type="url" 
                 placeholder='foto'
                 value={urlImage}
-                onChange={setUrlImage}
+                onChange={(e) => setUrlImage(e.target.value)}
                 />
-                <SCSUbmitRegister type="submit"/>
+                <SCSUbmitRegister type="submit" value='Cadastrar'/>
                 <Link to ='/'>
                 <SCTextResgister>Já tem uma conta? Faça login!</SCTextResgister>
                 </Link>
