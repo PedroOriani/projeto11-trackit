@@ -2,14 +2,23 @@ import styled from "styled-components"
 import Header from '../components/Header'
 import Footer from '../components/Footer'
 import Habit from '../components/Habit'
+import dayjs from 'dayjs'
+import 'dayjs/locale/pt-br'
+import { useState } from "react";
 
 export default function Today() {
+
+    dayjs.locale('br');
+    const [today] = useState(dayjs().format('dddd, DD/MM'));
+
+    const [finished, setFinisehd] = useState([]);
+
     return(
         <>
             <Header />
             <SCBodyToday>
                 <SCContainerToday>
-                    <SCData>Data</SCData>
+                    <SCData>{today}</SCData>
                     <SCPercentage>Nenhum hábito concluído ainda</SCPercentage>
                     <Habit />
                 </SCContainerToday>

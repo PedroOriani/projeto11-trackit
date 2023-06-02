@@ -1,6 +1,14 @@
 import styled from 'styled-components'
+import { Link } from 'react-router-dom'
+import { useState } from 'react'
 
 export default function Register(){
+
+    const [email, setEmail] = useState('')
+    const [password, setPassword] = useState('')
+    const [name, setName] = useState('')
+    const [urlImage, setUrlImage] = useState('')
+
     return(
         <SCRegister>
             <SCLogo src='../src/assets/logo.png'></SCLogo>
@@ -8,29 +16,31 @@ export default function Register(){
                 <SCInputRegister 
                 type="email" 
                 placeholder='email'
-                // value={}
-                // onChange={}
+                value={email}
+                onChange={setEmail}
                 />
                 <SCInputRegister 
                 type="password" 
                 placeholder='senha'
-                // value={}
-                // onChange={}
+                value={password}
+                onChange={setPassword}
                 />
                 <SCInputRegister 
                 type="text" 
                 placeholder='nome'
-                // value={}
-                // onChange={}
+                value={name}
+                onChange={setName}
                 />
                 <SCInputRegister 
-                type="text" 
+                type="url" 
                 placeholder='foto'
-                // value={}
-                // onChange={}
+                value={urlImage}
+                onChange={setUrlImage}
                 />
                 <SCSUbmitRegister type="submit"/>
-                <SCTextResgister>Não tem uma conta? Cadastre-se!</SCTextResgister>
+                <Link to ='/'>
+                <SCTextResgister>Já tem uma conta? Faça login!</SCTextResgister>
+                </Link>
             </form>
         </SCRegister>  
     );

@@ -1,14 +1,18 @@
 import styled from 'styled-components'
+import logo from '../../assets/logo.svg'
+import { Link } from 'react-router-dom'
 
 export default function HomePage(){
     return (
         <SCHomePage>
-            <SCLogo src='../src/assets/logo.png'></SCLogo>
+            <SCLogo src={logo}></SCLogo>
             <form>
                 <SCInputLogIn type="email" placeholder='email'/>
                 <SCInputLogIn type="password" placeholder='senha'/>
                 <SCSUbmitLogIn type="submit"/>
-                <SCTextLogIn>Não tem uma conta? Cadastre-se!</SCTextLogIn>
+                <Link to='/cadastro'>
+                    <SCTextLogIn>Não tem uma conta? Cadastre-se!</SCTextLogIn>
+                </Link>
             </form>
         </SCHomePage>  
     );

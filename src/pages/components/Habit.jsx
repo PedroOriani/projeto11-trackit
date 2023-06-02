@@ -1,5 +1,5 @@
 import styled from 'styled-components'
-import {BsFillCheckSquareFill} from 'react-icons/Bs'
+import {BsFillCheckSquareFill} from 'react-icons/bs'
 
 export default function Habit() {
 
@@ -7,9 +7,6 @@ export default function Habit() {
         { "id": 3 , "name": "Acordar" , "done": true , "currentSequence": 1 , "highestSequence": 1 }, 
         { "id": 4 , "name": "Dormir" , "done": true , "currentSequence": 3 , "highestSequence": 18},
         { "id": 5 , "name": "Comer" , "done": true , "currentSequence": 11 , "highestSequence": 11},
-        { "id": 3 , "name": "Acordar" , "done": true , "currentSequence": 1 , "highestSequence": 1 }, 
-        { "id": 4 , "name": "Dormir" , "done": true , "currentSequence": 3 , "highestSequence": 18},
-        { "id": 5 , "name": "Comer" , "done": true , "currentSequence": 11 , "highestSequence": 11}
     ];
 
     function checkTask (i){

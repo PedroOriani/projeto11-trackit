@@ -2,7 +2,6 @@ import styled from "styled-components"
 import Header from "../components/Header"
 import Footer from "../components/Footer"
 import Days from '../components/Days'
-import {BsFillCheckSquareFill} from 'react-icons/Bs'
 
 export default function Habits(){
     return(
@@ -76,6 +75,10 @@ const SCButtonAdd = styled.button`
 
     border-radius: 4.63636px;
     border: none;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
 `
 
 const SCAddHabito = styled.div`
