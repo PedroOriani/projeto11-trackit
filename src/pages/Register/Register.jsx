@@ -14,40 +14,48 @@ export default function Register(){
         email: email,
         password: password,
         name: name,
-        urlImage: urlImage,
+        urlImage: urlImage
+    }
+
+    function signUp(){
+
     }
 
     return(
         <SCRegister>
             <SCLogo src={logo}></SCLogo>
-            <form>
-                <SCInputRegister 
+            <form onSubmit={singUp}>
+                <SCInputRegister
+                data-test="email-input"
                 type="email" 
                 placeholder='email'
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 />
-                <SCInputRegister 
+                <SCInputRegister
+                data-test="password-input"
                 type="password" 
                 placeholder='senha'
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
                 />
-                <SCInputRegister 
+                <SCInputRegister
+                data-test="user-name-input"
                 type="text" 
                 placeholder='nome'
                 value={name}
                 onChange={(e) => setName(e.target.value)}
                 />
-                <SCInputRegister 
+                <SCInputRegister
+                data-test="user-image-input"
                 type="url" 
                 placeholder='foto'
                 value={urlImage}
                 onChange={(e) => setUrlImage(e.target.value)}
                 />
-                <SCSUbmitRegister type="submit" value='Cadastrar'/>
+                <SCSUbmitRegister data-test="signup-btn" type="submit" value='Cadastrar'/>
                 <Link to ='/'>
-                <SCTextResgister>Já tem uma conta? Faça login!</SCTextResgister>
+                <SCTextResgister data-test="login-link">Já tem uma conta? Faça login!</SCTextResgister>
                 </Link>
             </form>
         </SCRegister>  

@@ -2,37 +2,45 @@ import styled from "styled-components"
 import Header from "../components/Header"
 import Footer from "../components/Footer"
 import Days from '../components/Days'
+import MyHabit from "../components/MyHabit"
+import { BsFillPlusSquareFill } from 'react-icons/bs'
+import { ThreeDots } from 'react-loader-spinner'
 
 export default function Habits(){
     return(
         <>
-            <Header />
+            <Header data-test="header"/>
             <SCBodyHabits>
                 <SCContainerHabits>
                     <SCHabitsSup>
                         <p>Meus hábitos</p>
-                        <SCButtonAdd>+</SCButtonAdd>
+                        <SCButtonAdd data-test="habit-create-btn"></SCButtonAdd>
                     </SCHabitsSup>
-                    <SCAddHabito>
-                        <SCInputHabito type="text" placeholder="nome do hábito"></SCInputHabito>
+                    <SCAddHabito data-test="habit-create-container">
+                        <SCInputHabito data-test="habit-name-input" type="text" placeholder="nome do hábito"></SCInputHabito>
                         <SCDivDays>
                             <Days />
                         </SCDivDays>
                         <SCDivButtons>
-                            <SCCancel>Cancelar</SCCancel>
-                            <SCSave>Salvar</SCSave>
+                            <SCCancel data-test="habit-create-cancel-btn">Cancelar</SCCancel>
+                            <SCSave data-test="habit-create-save-btn">Salvar</SCSave>
                         </SCDivButtons>
                     </SCAddHabito>
                     <p>Você não tem nenhum hábito cadastrado ainda. Adicione um hábito para começar a trackear!</p>
+                    <MyHabit data-test="habit-container"/>
                 </SCContainerHabits>
             </SCBodyHabits>
-            <Footer />
+            <Footer data-test="menu"/>
         </>
     );
 }
 
 const SCBodyHabits = styled.div`
+    width: 100%;
+    height: 100%;
+
     padding-top: 70px;
+    padding-bottom: 105px;
 `
 const SCContainerHabits = styled.div`
     padding: 22px 17px 0 18px;
@@ -61,17 +69,15 @@ const SCHabitsSup = styled.div`
     }
 `
 
-const SCButtonAdd = styled.button`
+const SCButtonAdd = styled(BsFillPlusSquareFill)`
     width: 40px;
     height: 35px;
 
-    background: #52B6FF;
+    color: #52B6FF;
 
     font-weight: 400;
     font-size: 26.976px;
     line-height: 34px;
-
-    color: #FFFFFF;
 
     border-radius: 4.63636px;
     border: none;

@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { Link } from 'react-router-dom'
 import { CircularProgressbar, buildStyles } from 'react-circular-progressbar';
 import 'react-circular-progressbar/dist/styles.css';
 
@@ -7,20 +8,27 @@ export default function Footer(){
     const percentage = 33;
 
     return(
-        <SCFooter>
-            <SCTextFooter>Hábitos</SCTextFooter>
-            <SCPorcentage 
-            value={percentage} 
-            text='Hoje'
-            background
-            backgroundPadding={6}
-            styles={buildStyles({
-                backgroundColor: "#52B6FF",
-                textColor: "#FFFFFF",
-                pathColor: "#FFFFFF",
-                trailColor: "transparent"
-            })}/>
-            <SCTextFooter>Histórico</SCTextFooter>
+        <SCFooter data-test="menu">
+            <Link to='/habitos' style={{textDecoration: 'none'}}>
+                <SCTextFooter data-test="habit-link">Hábitos</SCTextFooter>
+            </Link>
+            <Link to='/hoje'>
+                <SCPorcentage
+                data-test="today-link"
+                value={percentage} 
+                text='Hoje'
+                background
+                backgroundPadding={6}
+                styles={buildStyles({
+                    backgroundColor: "#52B6FF",
+                    textColor: "#FFFFFF",
+                    pathColor: "#FFFFFF",
+                    trailColor: "transparent"
+                })}/>
+            </Link>
+            <Link to='/historico' style={{textDecoration: 'none'}}>
+                <SCTextFooter data-test="history-link">Histórico</SCTextFooter>
+            </Link>
         </SCFooter>
     );
 }

@@ -1,7 +1,7 @@
 import styled from "styled-components"
 import Header from '../components/Header'
 import Footer from '../components/Footer'
-import Habit from '../components/Habit'
+import Habit from '../components/TodayHabit'
 import dayjs from 'dayjs'
 import 'dayjs/locale/pt-br'
 import { useState } from "react";
@@ -15,15 +15,15 @@ export default function Today() {
 
     return(
         <>
-            <Header />
+            <Header data-test="header"/>
             <SCBodyToday>
                 <SCContainerToday>
-                    <SCData>{today}</SCData>
-                    <SCPercentage>Nenhum hábito concluído ainda</SCPercentage>
-                    <Habit />
+                    <SCData data-test="today">{today}</SCData>
+                    <SCPercentage data-test="today-counter">Nenhum hábito concluído ainda</SCPercentage>
+                    <Habit data-test="today-habit-container"/>
                 </SCContainerToday>
             </SCBodyToday>
-            <Footer />
+            <Footer data-test="menu"/>
         </>
     );
 }

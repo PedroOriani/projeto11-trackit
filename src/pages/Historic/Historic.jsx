@@ -5,14 +5,14 @@ import Footer from '../components/Footer'
 export default function Historic(){
     return(
         <>
-            <Header />
+            <Header data-test="header"/>
             <SCBodyHistoric>
                 <SCContainerHistoric>
                     <SCTitle>Histórico</SCTitle>
                     <SCDescription>Em breve você poderá ver o histórico dos seus hábitos aqui!</SCDescription>
                 </SCContainerHistoric>
             </SCBodyHistoric>
-            <Footer />
+            <Footer data-test="menu"/>
         </>
     );
 }

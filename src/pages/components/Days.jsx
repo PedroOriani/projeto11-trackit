@@ -6,7 +6,7 @@ export default function Days(){
 
     return(
         days.map((day, i) => (
-            <SCDays key={i}>{day}</SCDays>
+            <SCDays data-test="habit-day" key={i}>{day}</SCDays>
         ))
         );
 }

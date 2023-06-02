@@ -7,6 +7,9 @@ export default function Habit() {
         { "id": 3 , "name": "Acordar" , "done": true , "currentSequence": 1 , "highestSequence": 1 }, 
         { "id": 4 , "name": "Dormir" , "done": true , "currentSequence": 3 , "highestSequence": 18},
         { "id": 5 , "name": "Comer" , "done": true , "currentSequence": 11 , "highestSequence": 11},
+        { "id": 3 , "name": "Acordar" , "done": true , "currentSequence": 1 , "highestSequence": 1 }, 
+        { "id": 4 , "name": "Dormir" , "done": true , "currentSequence": 3 , "highestSequence": 18},
+        { "id": 5 , "name": "Comer" , "done": true , "currentSequence": 11 , "highestSequence": 11}
     ];
 
     function checkTask (i){
@@ -17,17 +20,17 @@ export default function Habit() {
         habits.map((habit, i) => (
             <SCHabit key={i}>
                 <SCContainerText>
-                    <SCTitle>{habit.name}</SCTitle>
-                    <SCContainerSequence>
+                    <SCTitle data-test="today-habit-name">{habit.name}</SCTitle>
+                    <SCContainerSequence data-test="today-habit-sequence">
                         <SCSequence>Sequência atual:</SCSequence>
                         <SCSequenceDays>{habit.currentSequence}</SCSequenceDays>
                     </SCContainerSequence>
-                    <SCContainerRecord>
+                    <SCContainerRecord data-test="today-habit-record">
                         <SCRecord>Seu record:</SCRecord>
                         <SCRecordDays>{habit.highestSequence}</SCRecordDays>
                     </SCContainerRecord>
                 </SCContainerText>
-                <SCbuttonCheck onClick={() => checkTask(i)}/>
+                <SCbuttonCheck data-test="today-habit-check-btn" onClick={() => checkTask(i)}/>
             </SCHabit>
         ))
     );

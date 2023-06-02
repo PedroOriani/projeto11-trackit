@@ -2,9 +2,9 @@ import styled from "styled-components"
 
 export default function Header(){
     return(
-        <SCHeader>
+        <SCHeader data-test="header">
             <p>TrackIt</p>
-            <SCPerfilImage></SCPerfilImage>
+            <SCPerfilImage data-test="avatar"></SCPerfilImage>
         </SCHeader>
     );
 }

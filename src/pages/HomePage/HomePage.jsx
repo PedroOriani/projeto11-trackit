@@ -1,18 +1,44 @@
 import styled from 'styled-components'
 import logo from '../../assets/logo.svg'
 import { Link } from 'react-router-dom'
+import { useState } from 'react'
 import { ThreeDots } from 'react-loader-spinner'
 
 export default function HomePage(){
+
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
+
+    const logInObject = {
+        email: email,
+        password: password
+    }
+
+    function logIn(){
+
+    }
+
     return (
         <SCHomePage>
             <SCLogo src={logo}></SCLogo>
-            <form>
-                <SCInputLogIn type="email" placeholder='email'/>
-                <SCInputLogIn type="password" placeholder='senha'/>
-                <SCSUbmitLogIn type="submit"/>
+            <form onSubmit={logIn}>
+                <SCInputLogIn
+                data-test="email-input"
+                type="email" 
+                placeholder='email'
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}                
+                />
+                <SCInputLogIn
+                data-test="password-input"
+                type="password" 
+                placeholder='senha'
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}                
+                />
+                <SCSUbmitLogIn  data-test="login-btn" type="submit"/>
                 <Link to='/cadastro'>
-                    <SCTextLogIn>Não tem uma conta? Cadastre-se!</SCTextLogIn>
+                    <SCTextLogIn data-test="signup-link">Não tem uma conta? Cadastre-se!</SCTextLogIn>
                 </Link>
             </form>
         </SCHomePage>  
