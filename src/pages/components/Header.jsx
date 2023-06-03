@@ -4,7 +4,10 @@ export default function Header(){
     return(
         <SCHeader data-test="header">
             <p>TrackIt</p>
+            <SCDivRight>
+            <SCName>Pedro</SCName>
             <SCPerfilImage data-test="avatar"></SCPerfilImage>
+            </SCDivRight>
         </SCHeader>
     );
 }
@@ -31,6 +34,20 @@ const SCHeader = styled.div`
     line-height: 49px;
 
     color: #FFFFFF;
+`
+
+const SCDivRight = styled.div`
+    display: flex;
+`
+
+const SCName = styled.p`
+    font-family: 'Lexend Deca', sans-serif;
+    font-weight: 400;
+    font-size: 20px;
+
+    color: #FFFFFF;
+
+    margin-right: 15px
 `
 
 const SCPerfilImage = styled.div`

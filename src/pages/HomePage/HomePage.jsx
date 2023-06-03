@@ -3,11 +3,15 @@ import logo from '../../assets/logo.svg'
 import { Link } from 'react-router-dom'
 import { useState } from 'react'
 import { ThreeDots } from 'react-loader-spinner'
+import { useContext } from 'react'
+import DatasContext from '../components/DatasContext'
 
 export default function HomePage(){
 
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
+
+    const {dataUser, setDataUser} = useContext(DatasContext)
 
     const logInObject = {
         email: email,

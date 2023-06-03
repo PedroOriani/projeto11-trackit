@@ -1,7 +1,9 @@
 import styled from 'styled-components'
 import logo from '../../assets/logo.svg'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { useState } from 'react'
+import axios from 'axios'
+import { ThreeDots } from 'react-loader-spinner'
 
 export default function Register(){
 
@@ -10,21 +12,49 @@ export default function Register(){
     const [name, setName] = useState('')
     const [urlImage, setUrlImage] = useState('')
 
-    const registerObj = {
-        email: email,
-        password: password,
-        name: name,
-        urlImage: urlImage
-    }
+    const [loading, setLoading] = useState(false)
 
-    function signUp(){
+    const threeDots = (
+        <ThreeDots
+            width='51px'
+            color='#ffffff'
+        />)
 
-    }
+    const navigate = useNavigate()
+
+    function signUp(e){
+
+        e.preventDefault();
+
+        const registerObj = {
+            email: email,
+            password: password,
+            name: name,
+            image: urlImage
+        };
+        setLoading(true);
+
+        const URL = 'https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/auth/sign-up';
+
+        const promise = axios.post(URL, registerObj);
+
+        promise.then(resposta => {
+            console.log(resposta.data);
+            setLoading(false);
+            navigate('/');
+        });
+
+        promise.catch(erro => {
+            alert(erro.response.data.message);
+            setLoading(false);
+        })
+            
+        }
 
     return(
         <SCRegister>
             <SCLogo src={logo}></SCLogo>
-            <form onSubmit={singUp}>
+            <form onSubmit={signUp}>
                 <SCInputRegister
                 data-test="email-input"
                 type="email" 
@@ -53,7 +83,7 @@ export default function Register(){
                 value={urlImage}
                 onChange={(e) => setUrlImage(e.target.value)}
                 />
-                <SCSUbmitRegister data-test="signup-btn" type="submit" value='Cadastrar'/>
+                <SCSUbmitRegister data-test="signup-btn" type="submit" value={loading ? threeDots : 'Cadastrar'}/>
                 <Link to ='/'>
                 <SCTextResgister data-test="login-link">Já tem uma conta? Faça login!</SCTextResgister>
                 </Link>
