@@ -18,12 +18,7 @@ export default function HomePage(){
     const navigate = useNavigate();
 
 
-    const threeDots = (
-        <ThreeDots
-            width='51px'
-            color='#ffffff'
-        />
-    );
+    const threeDots = <SCThreeDots/>;
 
     function logIn(e){
         e.preventDefault();
@@ -46,6 +41,7 @@ export default function HomePage(){
             console.log(resposta.data);
             setLoading(false);
             navigate('/hoje');
+            setDataUser(resposta.data);
         });
 
         promise.catch(erro => {
@@ -62,6 +58,7 @@ export default function HomePage(){
                 data-test="email-input"
                 type="email" 
                 placeholder='email'
+                disable={loading}
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}                
                 />
@@ -69,10 +66,15 @@ export default function HomePage(){
                 data-test="password-input"
                 type="password" 
                 placeholder='senha'
+                disable={loading}
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}                
                 />
-                <SCSUbmitLogIn  data-test="login-btn" type="submit" name={loading ? threeDots : 'Entrar'}/>
+                <SCSUbmitLogIn  
+                data-test="login-btn" 
+                type="submit" 
+                disable={loading}
+                value={loading ? threeDots : 'Entrar'}/>
                 <Link to='/cadastro'>
                     <SCTextLogIn data-test="signup-link">Não tem uma conta? Cadastre-se!</SCTextLogIn>
                 </Link>
@@ -142,3 +144,7 @@ const SCTextLogIn = styled.p`
     color: #52B6FF;
 `
 
+const SCThreeDots = styled(ThreeDots)`
+    width: 51px;
+    color: #ffffff;
+`

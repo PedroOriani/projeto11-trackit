@@ -14,11 +14,7 @@ export default function Register(){
 
     const [loading, setLoading] = useState(false)
 
-    const threeDots = (
-        <ThreeDots
-            width='51px'
-            color='#ffffff'
-        />)
+    const threeDots = <ThreeDots />
 
     const navigate = useNavigate()
 
@@ -83,7 +79,7 @@ export default function Register(){
                 value={urlImage}
                 onChange={(e) => setUrlImage(e.target.value)}
                 />
-                <SCSUbmitRegister data-test="signup-btn" type="submit" name={loading ? threeDots : 'Cadastrar'}/>
+                <SCSUbmitRegister data-test="signup-btn" type="submit" value="Cadastrar"/>
                 <Link to ='/'>
                 <SCTextResgister data-test="login-link">Já tem uma conta? Faça login!</SCTextResgister>
                 </Link>
@@ -157,4 +153,9 @@ const SCTextResgister = styled.p`
     margin-top: 25px;
 
     color: #52B6FF;
+`
+
+const SCThreeDots = styled(ThreeDots)`
+    width: 51px;
+    color: #ffffff;
 `

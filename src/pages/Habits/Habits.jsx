@@ -5,8 +5,12 @@ import Days from '../components/Days'
 import MyHabit from "../components/MyHabit"
 import { BsFillPlusSquareFill } from 'react-icons/bs'
 import { ThreeDots } from 'react-loader-spinner'
+import { useState, useContext } from 'react'
 
 export default function Habits(){
+
+    const [qntHabitos, setQntHabitos] = useState([]);
+
     return(
         <>
             <Header data-test="header"/>

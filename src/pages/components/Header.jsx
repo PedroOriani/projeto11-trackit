@@ -1,12 +1,17 @@
 import styled from "styled-components"
+import { useContext, useState } from 'react'
+import DatasContext from '../components/DatasContext'
 
 export default function Header(){
+
+    const {dataUser, setDataUser} = useContext(DatasContext)
+
     return(
         <SCHeader data-test="header">
             <p>TrackIt</p>
             <SCDivRight>
-            <SCName>Pedro</SCName>
-            <SCPerfilImage data-test="avatar"></SCPerfilImage>
+            <SCName>{dataUser.name}</SCName>
+            <SCPerfilImage data-test="avatar" src={dataUser.image}></SCPerfilImage>
             </SCDivRight>
         </SCHeader>
     );
@@ -50,11 +55,9 @@ const SCName = styled.p`
     margin-right: 15px
 `
 
-const SCPerfilImage = styled.div`
+const SCPerfilImage = styled.img`
     width: 51px;
     height: 51px;
     border-radius: 98.5px;
     background-color: green;
-    background-image: url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSlAFNbMMcoO9LUzTNd4ScxQmnMEhhcrl55Ww&usqp=CAU');
-    background-size: cover;
 `
