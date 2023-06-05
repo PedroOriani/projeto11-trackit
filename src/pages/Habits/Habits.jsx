@@ -19,6 +19,8 @@ export default function Habits(){
 
     const {dataUser, setDataUser, habitos, setHabitos} = useContext(DatasContext)
 
+    let sum = 0;
+
     useEffect( () => {
             
             const token = {
@@ -35,8 +37,9 @@ export default function Habits(){
       }, []);
 
     function newHabit(){
-        const sum = add + 1
+        sum = add + 1
         setAdd(sum)
+        console.log(sum)
     }
 
     function consoleHabits(){
@@ -55,6 +58,20 @@ export default function Habits(){
         }
     }
 
+    function createHabit(){
+        sum = add - 1
+        setAdd(sum)
+        setSelect([])
+        console.log(sum)
+    }
+
+    function cancelHabit(){
+        sum = add - 1
+        setAdd(sum)
+        setSelect([])
+        console.log(sum)
+    }
+
     return(
         <>
             <Header data-test="header"/>
@@ -62,7 +79,11 @@ export default function Habits(){
                 <SCContainerHabits>
                     <SCHabitsSup>
                         <p onClick={consoleHabits}>Meus hábitos</p>
-                        <SCButtonAdd data-test="habit-create-btn" onClick={newHabit}></SCButtonAdd>
+                        <SCButtonAdd 
+                        data-test="habit-create-btn" 
+                        onClick={newHabit}
+                        disabled={add % 2 === 1}
+                        ></SCButtonAdd>
                     </SCHabitsSup>
                     <SCAddHabito data-test="habit-create-container" add={add}>
                         <SCInputHabito 
@@ -83,8 +104,8 @@ export default function Habits(){
                             ))}
                         </SCDivDays>
                         <SCDivButtons>
-                            <SCCancel data-test="habit-create-cancel-btn">Cancelar</SCCancel>
-                            <SCSave data-test="habit-create-save-btn">Salvar</SCSave>
+                            <SCCancel data-test="habit-create-cancel-btn" onClick={cancelHabit}>Cancelar</SCCancel>
+                            <SCSave data-test="habit-create-save-btn" onClick={createHabit}>Salvar</SCSave>
                         </SCDivButtons>
                     </SCAddHabito>
                     <p>Você não tem nenhum hábito cadastrado ainda. Adicione um hábito para começar a trackear!</p>
