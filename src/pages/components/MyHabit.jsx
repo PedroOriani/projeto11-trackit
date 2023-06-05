@@ -11,6 +11,8 @@ export default function MyHabit() {
 
     const habits = habitos
 
+    console.log(habitos)
+
     return(
         habits.map((habit, i) => (
             <SCHabit data-test="habit-container" key={i}>
@@ -20,6 +22,7 @@ export default function MyHabit() {
                         <SCDays 
                         data-test="habit-day" 
                         key={i}
+                        selected={habit.days.includes(i)}
                         >{day}</SCDays>
                     ))}
                 </SCDivDays>
@@ -80,8 +83,8 @@ const SCDays = styled.button`
     border: 1px solid #D5D5D5;
     border-radius: 5px;
 
-    background: ${props => props.selected}none; // fazer props para aletrnância de cor
-    color: #DBDBDB; // fazer props para aletrnância de cor
+    background: ${props => props.selected ? '#CFCFCF' : 'none'};
+    color: ${props => props.selected ? '#ffffff' : '#DBDBDB'};
 
     display: flex;
     justify-content: center;

@@ -14,6 +14,7 @@ export default function Habits(){
     const [add, setAdd] = useState(0);
     const [select, setSelect] = useState([])
     const [newHabitName, setNewHabitName] = useState('')
+    const [loading, setLoading] = useState(false);
 
     const days = ['D', 'S', 'T', 'Q', 'Q', 'S', 'S'];
 
@@ -51,7 +52,6 @@ export default function Habits(){
 
     function selectDay(i) {
         if (select.includes(i)){
-            const isSelected = select.some(d => d === i);
             const newList = select.filter(d => d !== i);
             setSelect(newList);
         }else{
@@ -60,6 +60,7 @@ export default function Habits(){
     }
 
     function createHabit(){
+        setLoading(true);
         sum = add - 1
         setAdd(sum)
         setSelect([])
@@ -73,8 +74,15 @@ export default function Habits(){
 
         const promise = axios.post(URL, newhabitObj, token);
     
-        promise.then( resposta => console.log(resposta.data));    
-        promise.catch( erro => alert(erro.response)); 
+        promise.then( resposta => {
+            console.log(resposta.data);
+            setLoading(false);       
+        });
+
+        promise.catch( erro => {
+            alert(erro.response)
+            setLoading(false);
+        }); 
     }
 
     function cancelHabit(){

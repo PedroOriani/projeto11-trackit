@@ -9,6 +9,7 @@ export default function Habit() {
     const {dataUser} = useContext(DatasContext)
 
     const [todayHabits, setTodayHabits] = useState([]);
+    const [clicked, setClicked] = useState([]);
 
     const token = {
         headers:{
@@ -27,13 +28,33 @@ export default function Habit() {
     
       }, []);
 
-    function checkTask (i){
-        
+    function checkTask (habit){
+        if (clicked.includes(habit.id)){
+            const newList = clicked.filter(h => {
+                h.id !== habit.id
+                console.log(habit.id);
+                console.log(h.id)
+        });
+            setClicked(newList);
+
+
+        }else{
+            setClicked([...clicked, habit.id]);
+
+            const URL ='https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/habits/ID_DO_HABITO/check';
+
+            const promise = axios.post(URL, '', token);
+    
+            promise.then( resposta => console.log(resposta.data));    
+            promise.catch( erro => alert(erro.response)); 
+        }
     }
 
+    console.log(clicked)
+
     return(
-        todayHabits.map((habit, i) => (
-            <SCHabit key={i}>
+        todayHabits.map(habit => (
+            <SCHabit key={habit.id}>
                 <SCContainerText>
                     <SCTitle data-test="today-habit-name">{habit.name}</SCTitle>
                     <SCContainerSequence data-test="today-habit-sequence">
@@ -45,7 +66,11 @@ export default function Habit() {
                         <SCRecordDays>{habit.highestSequence}</SCRecordDays>
                     </SCContainerRecord>
                 </SCContainerText>
-                <SCbuttonCheck data-test="today-habit-check-btn" onClick={() => checkTask(i)}/>
+                <SCbuttonCheck 
+                data-test="today-habit-check-btn"
+                clicked={clicked.includes(habit.id)}
+                onClick={() => checkTask(habit)}
+                />
             </SCHabit>
         ))
     );
@@ -129,5 +154,5 @@ const SCbuttonCheck = styled(BsFillCheckSquareFill)`
     width: 69px;
     height: 69px;
 
-    color: #EBEBEB;
+    color: ${props => props.clicked ? '#8FC549' : '#E7E7E7'};
 `
