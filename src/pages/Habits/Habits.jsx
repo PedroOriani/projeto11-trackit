@@ -27,10 +27,6 @@ export default function Habits(){
         }
     };
 
-    console.log(dataUser)
-    console.log(dataUser.token)
-    console.log(token)
-
     useEffect( () => {
 
             const URL = 'https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/habits';

@@ -5,25 +5,22 @@ import DatasContext from '../components/DatasContext'
 
 export default function MyHabit() {
 
-    const days = ['D', 'S', 'T', 'Q', 'Q', 'S', 'S'];
+    const weekDays = ['D', 'S', 'T', 'Q', 'Q', 'S', 'S'];
 
     const {dataUser, setDataUser, habitos, setHabitos} = useContext(DatasContext)
 
     const habits = habitos
-
-    const len = habits.length;
-
-    console.log(habits)
 
     return(
         habits.map((habit, i) => (
             <SCHabit data-test="habit-container" key={i}>
                 <SCName data-test="habit-name">{habit.name}</SCName>
                 <SCDivDays>
-                    {days.map((day, i) => (
+                    {weekDays.map((day, i) => (
                         <SCDays 
                         data-test="habit-day" 
                         key={i}
+                        selected={habitos[i].days.includes(i)}
                         >{day}</SCDays>
                     ))}
                 </SCDivDays>
@@ -84,7 +81,7 @@ const SCDays = styled.button`
     border: 1px solid #D5D5D5;
     border-radius: 5px;
 
-    background: none; // fazer props para aletrnância de cor
+    background: ${props => props.selected}none; // fazer props para aletrnância de cor
     color: #DBDBDB; // fazer props para aletrnância de cor
 
     display: flex;
