@@ -11,9 +11,12 @@ function App() {
 
   const [dataUser, setDataUser] = useState({});
   const [habitos, setHabitos] = useState([]);
+  const [todayHabits, setTodayHabits] = useState([]);
+  const [clicked, setClicked] = useState([]);
+
 
   return (
-    <DatasContext.Provider value={{dataUser, setDataUser, habitos, setHabitos}}>
+    <DatasContext.Provider value={{dataUser, setDataUser, habitos, setHabitos, todayHabits, setTodayHabits, clicked, setClicked}}>
       <BrowserRouter>
         <Routes>
           <Route path='/' element={<HomePage />} />

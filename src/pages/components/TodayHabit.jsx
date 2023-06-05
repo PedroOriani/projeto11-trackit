@@ -6,10 +6,7 @@ import axios from 'axios'
 
 export default function Habit() {
 
-    const {dataUser} = useContext(DatasContext)
-
-    const [todayHabits, setTodayHabits] = useState([]);
-    const [clicked, setClicked] = useState([]);
+    const {dataUser, todayHabits, setTodayHabits, clicked, setClicked} = useContext(DatasContext)
 
     const token = {
         headers:{
@@ -71,6 +68,10 @@ export default function Habit() {
         setClicked(slicesName);
     }
 
+    const len = todayHabits.length;
+    const check = clicked.length;
+    
+
     return(
         todayHabits.map(habit => (
             <SCHabit key={habit.id}>
@@ -78,11 +79,15 @@ export default function Habit() {
                     <SCTitle data-test="today-habit-name">{habit.name}</SCTitle>
                     <SCContainerSequence data-test="today-habit-sequence">
                         <SCSequence>Sequência atual:</SCSequence>
-                        <SCSequenceDays>{habit.currentSequence}</SCSequenceDays>
+                        <SCSequenceDays clicked={clicked.includes(habit.id)}>
+                            {habit.currentSequence}
+                        </SCSequenceDays>
                     </SCContainerSequence>
                     <SCContainerRecord data-test="today-habit-record">
                         <SCRecord>Seu record:</SCRecord>
-                        <SCRecordDays>{habit.highestSequence}</SCRecordDays>
+                        <SCRecordDays higher={habit.currentSequence === habit.highestSequence}>
+                            {habit.highestSequence}
+                        </SCRecordDays>
                     </SCContainerRecord>
                 </SCContainerText>
                 <SCbuttonCheck 
@@ -144,7 +149,7 @@ const SCSequenceDays = styled.p`
 
     margin-left: 4px;
 
-    color: #666666; //Alternancia de cor
+    color: ${props => props.clicked ? '#8FC549' : '#666666'}; //Alternancia de cor
 `
 
 const SCContainerRecord = styled.div`

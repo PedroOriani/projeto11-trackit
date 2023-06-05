@@ -4,14 +4,21 @@ import Footer from '../components/Footer'
 import Habit from '../components/TodayHabit'
 import dayjs from 'dayjs'
 import 'dayjs/locale/pt-br'
-import { useState } from "react";
+import { useState, useContext, useEffect } from 'react'
+import DatasContext from '../components/DatasContext'
 
 export default function Today() {
 
     dayjs.locale('br');
     const [today] = useState(dayjs().format('dddd, DD/MM'));
 
-    const [finished, setFinisehd] = useState([]);
+    const {dataUser, todayHabits, setTodayHabits, clicked, setClicked} = useContext(DatasContext)
+
+    const len = todayHabits.length;
+    const check = clicked.length;
+
+    console.log(len);
+    console.log(check)
 
     return(
         <>
@@ -19,7 +26,10 @@ export default function Today() {
             <SCBodyToday>
                 <SCContainerToday>
                     <SCData data-test="today">{today}</SCData>
-                    <SCPercentage data-test="today-counter">Nenhum hábito concluído ainda</SCPercentage>
+                    <SCPercentage 
+                    data-test="today-counter">
+                       {clicked.length === 0 ? <p>Nenhum hábito concluído ainda</p> : `${Math.round(check/len*100)} dos hábitos concluídos`}
+                    </SCPercentage>
                     <Habit data-test="today-habit-container"/>
                 </SCContainerToday>
             </SCBodyToday>
@@ -48,7 +58,7 @@ const SCData = styled.p`
     line-height: 29px;
 `
 
-const SCPercentage = styled.p`
+const SCPercentage = styled.div`
     font-weight: 400;
     font-size: 17.976px;
     line-height: 22px;

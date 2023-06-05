@@ -2,10 +2,17 @@ import styled from "styled-components";
 import { Link } from 'react-router-dom'
 import { CircularProgressbar, buildStyles } from 'react-circular-progressbar';
 import 'react-circular-progressbar/dist/styles.css';
+import { useState, useContext, useEffect } from 'react'
+import DatasContext from '../components/DatasContext'
 
 export default function Footer(){
 
-    const percentage = 33;
+    const {dataUser, todayHabits, setTodayHabits, clicked, setClicked} = useContext(DatasContext)
+
+    const len = todayHabits.length;
+    const check = clicked.length;
+
+    const percentage = Math.round(check/len*100);
 
     return(
         <SCFooter data-test="menu">
