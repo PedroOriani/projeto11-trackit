@@ -2,16 +2,32 @@ import styled from 'styled-components'
 import {BsTrash} from 'react-icons/bs'
 import { useState, useContext } from 'react'
 import DatasContext from '../components/DatasContext'
+import axios from 'axios'
 
 export default function MyHabit() {
 
     const weekDays = ['D', 'S', 'T', 'Q', 'Q', 'S', 'S'];
 
-    const {habitos} = useContext(DatasContext)
+    const {dataUser, habitos} = useContext(DatasContext)
 
     const habits = habitos
 
-    console.log(habitos)
+    const token = {
+        headers:{
+          Authorization: `Bearer ${dataUser.token}`
+        }
+    };
+
+    function deleteHabit(id){
+        confirm('Gostaria realmente de apagar o hábito')
+        const URL = `https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/habits/${id}`
+
+        const promise = axios.delete(URL, token);
+    
+        promise.then( resposta => console.log('deu certo'));
+
+        promise.catch( erro => alert('deu ruim')); 
+    }
 
     return(
         habits.map((habit, i) => (
@@ -26,7 +42,9 @@ export default function MyHabit() {
                         >{day}</SCDays>
                     ))}
                 </SCDivDays>
-                <SCDelete data-test="habit-delete-btn"/>
+                <SCDelete 
+                onClick={() => deleteHabit(habit.id)}
+                data-test="habit-delete-btn"/>
             </SCHabit>
         ))
     );

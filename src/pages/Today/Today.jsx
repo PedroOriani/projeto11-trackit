@@ -27,6 +27,7 @@ export default function Today() {
                 <SCContainerToday>
                     <SCData data-test="today">{today}</SCData>
                     <SCPercentage 
+                    clicked={check > 0}
                     data-test="today-counter">
                        {clicked.length === 0 ? <p>Nenhum hábito concluído ainda</p> : `${Math.round(check/len*100)} dos hábitos concluídos`}
                     </SCPercentage>
@@ -63,7 +64,7 @@ const SCPercentage = styled.div`
     font-size: 17.976px;
     line-height: 22px;
 
-    color: #BABABA; //ALTERNANCIA DE COR
+    color: ${props => props.clicked ? '#8FC549' : '#BABABA'} ; //ALTERNANCIA DE COR
 
     margin-bottom: 18px;
 `
