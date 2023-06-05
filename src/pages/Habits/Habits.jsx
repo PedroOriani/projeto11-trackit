@@ -22,6 +22,8 @@ export default function Habits(){
 
     let sum = 0;
 
+    const threeDots = <SCThreeDots/>;
+
     const token = {
         headers:{
           Authorization: `Bearer ${dataUser.token}`
@@ -61,8 +63,6 @@ export default function Habits(){
 
     function createHabit(){
         setLoading(true);
-        sum = add - 1
-        setAdd(sum)
         setSelect([])
 
         const newhabitObj={
@@ -76,7 +76,9 @@ export default function Habits(){
     
         promise.then( resposta => {
             console.log(resposta.data);
-            setLoading(false);       
+            setLoading(false);
+            sum = add - 1
+            setAdd(sum)       
         });
 
         promise.catch( erro => {
@@ -132,7 +134,7 @@ export default function Habits(){
                             data-test="habit-create-save-btn" 
                             onClick={createHabit}
                             disabled={loading}
-                            >Salvar</SCSave>
+                            >{loading ? threeDots : <p>Salvar</p>}</SCSave>
                         </SCDivButtons>
                     </SCAddHabito>
                     {habitos.length === 0 && <p>Você não tem nenhum hábito cadastrado ainda. Adicione um hábito para começar a trackear!</p>}
@@ -310,4 +312,9 @@ const SCDays = styled.button`
     display: flex;
     justify-content: center;
     align-items: center;
+`
+
+const SCThreeDots = styled(ThreeDots)`
+    width: 51px;
+    color: #ffffff;
 `

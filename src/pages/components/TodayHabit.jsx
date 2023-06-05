@@ -85,7 +85,7 @@ export default function Habit() {
                     </SCContainerSequence>
                     <SCContainerRecord data-test="today-habit-record">
                         <SCRecord>Seu record:</SCRecord>
-                        <SCRecordDays higher={habit.currentSequence === habit.highestSequence}>
+                        <SCRecordDays higher={habit.currentSequence === habit.highestSequence && habit.currentSequence > 0  }>
                             {habit.highestSequence}
                         </SCRecordDays>
                     </SCContainerRecord>
@@ -171,7 +171,7 @@ const SCRecordDays = styled.p`
 
     margin-left: 4px;
 
-    color: #666666; //Alternancia de cor
+    color: ${props => props.higher ? '#8FC549' : '#666666'} ; //Alternancia de cor
 `
 
 const SCbuttonCheck = styled(BsFillCheckSquareFill)`
