@@ -17,17 +17,23 @@ export default function Habits(){
 
     const days = ['D', 'S', 'T', 'Q', 'Q', 'S', 'S'];
 
-    const {dataUser, setDataUser, habitos, setHabitos} = useContext(DatasContext)
+    const {dataUser, habitos, setHabitos} = useContext(DatasContext)
 
     let sum = 0;
 
+    const token = {
+        headers:{
+          Authorization: `Bearer ${dataUser.token}`
+        }
+    };
+
+    console.log(dataUser)
+    console.log(dataUser.token)
+    console.log(token)
+
     useEffect( () => {
-            
-            const token = {
-                headers:{
-                  Authorization: `Bearer ${dataUser.token}`
-                }
-            };
+
+            const URL = 'https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/habits';
 
             const promise = axios.get(URL, token);
     
@@ -39,7 +45,6 @@ export default function Habits(){
     function newHabit(){
         sum = add + 1
         setAdd(sum)
-        console.log(sum)
     }
 
     function consoleHabits(){
@@ -62,14 +67,24 @@ export default function Habits(){
         sum = add - 1
         setAdd(sum)
         setSelect([])
-        console.log(sum)
+
+        const newhabitObj={
+            name: newHabitName,
+            days: select
+        }
+
+        const URL = 'https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/habits'
+
+        const promise = axios.post(URL, newhabitObj, token);
+    
+        promise.then( resposta => console.log(resposta.data));    
+        promise.catch( erro => alert(erro.response)); 
     }
 
     function cancelHabit(){
         sum = add - 1
         setAdd(sum)
         setSelect([])
-        console.log(sum)
     }
 
     return(

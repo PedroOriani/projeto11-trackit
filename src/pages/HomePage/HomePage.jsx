@@ -26,10 +26,10 @@ export default function HomePage(){
         console.log(email)
         console.log(password)
 
-        const logInObject = {
-            email: email,
-            password: password
-        };
+    const logInObject = {
+        email: email,
+        password: password
+    };
 
         setLoading(true);
 

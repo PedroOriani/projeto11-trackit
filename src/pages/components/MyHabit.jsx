@@ -25,7 +25,7 @@ export default function MyHabit() {
                         data-test="habit-day" 
                         key={i}
                         >{day}</SCDays>
-                    ))};
+                    ))}
                 </SCDivDays>
                 <SCDelete data-test="habit-delete-btn"/>
             </SCHabit>
