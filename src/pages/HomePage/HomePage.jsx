@@ -25,17 +25,20 @@ export default function HomePage(){
         />
     );
 
-    const logInObject = {
-        email: email,
-        password: password
-    };
-
     function logIn(e){
         e.preventDefault();
 
+        console.log(email)
+        console.log(password)
+
+        const logInObject = {
+            email: email,
+            password: password
+        };
+
         setLoading(true);
 
-        const URL ='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';
+        const URL ='https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/auth/login';
 
         const promise = axios.post(URL, logInObject);
 
