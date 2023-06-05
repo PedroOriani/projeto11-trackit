@@ -1,6 +1,7 @@
 import styled from 'styled-components'
 import logo from '../../assets/logo.svg'
-import { Link } from 'react-router-dom'
+import axios from 'axios'
+import { Link, useNavigate } from 'react-router-dom'
 import { useState } from 'react'
 import { ThreeDots } from 'react-loader-spinner'
 import { useContext } from 'react'
@@ -10,16 +11,44 @@ export default function HomePage(){
 
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
+    const [loading, setLoading] = useState(false)
 
     const {dataUser, setDataUser} = useContext(DatasContext)
+
+    const navigate = useNavigate();
+
+
+    const threeDots = (
+        <ThreeDots
+            width='51px'
+            color='#ffffff'
+        />
+    );
 
     const logInObject = {
         email: email,
         password: password
-    }
+    };
 
-    function logIn(){
+    function logIn(e){
+        e.preventDefault();
 
+        setLoading(true);
+
+        const URL ='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';
+
+        const promise = axios.post(URL, logInObject);
+
+        promise.then(resposta => {
+            console.log(resposta.data);
+            setLoading(false);
+            navigate('/hoje');
+        });
+
+        promise.catch(erro => {
+            alert(erro.response.data.message);
+            setLoading(false);
+        })
     }
 
     return (
@@ -40,7 +69,7 @@ export default function HomePage(){
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}                
                 />
-                <SCSUbmitLogIn  data-test="login-btn" type="submit"/>
+                <SCSUbmitLogIn  data-test="login-btn" type="submit" name={loading ? threeDots : 'Entrar'}/>
                 <Link to='/cadastro'>
                     <SCTextLogIn data-test="signup-link">Não tem uma conta? Cadastre-se!</SCTextLogIn>
                 </Link>

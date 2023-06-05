@@ -83,7 +83,7 @@ export default function Register(){
                 value={urlImage}
                 onChange={(e) => setUrlImage(e.target.value)}
                 />
-                <SCSUbmitRegister data-test="signup-btn" type="submit" value={loading ? threeDots : 'Cadastrar'}/>
+                <SCSUbmitRegister data-test="signup-btn" type="submit" name={loading ? threeDots : 'Cadastrar'}/>
                 <Link to ='/'>
                 <SCTextResgister data-test="login-link">Já tem uma conta? Faça login!</SCTextResgister>
                 </Link>
