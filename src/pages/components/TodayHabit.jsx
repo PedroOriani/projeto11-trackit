@@ -30,27 +30,46 @@ export default function Habit() {
 
     function checkTask (habit){
         if (clicked.includes(habit.id)){
-            const newList = clicked.filter(h => {
-                h.id !== habit.id
-                console.log(habit.id);
-                console.log(h.id)
-        });
-            setClicked(newList);
+            unselect(habit.id)
 
+            const URL =`https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/habits/${habit.id}/uncheck`;
+
+            const promise = axios.post(URL, '', token);
+    
+            promise.then( resposta => console.log('deu certo'));    
+            promise.catch( erro => alert(erro.response)); 
 
         }else{
             setClicked([...clicked, habit.id]);
 
-            const URL ='https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/habits/ID_DO_HABITO/check';
+            const URL =`https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/habits/${habit.id}/check`;
 
             const promise = axios.post(URL, '', token);
     
-            promise.then( resposta => console.log(resposta.data));    
+            promise.then( resposta => console.log('deu certo'));    
             promise.catch( erro => alert(erro.response)); 
         }
     }
 
-    console.log(clicked)
+    function unselect(i){
+        let index;
+        for (let j = 0; j < clicked.length; j++){
+            if (clicked[j] === i){
+                index = j;
+            }
+        }
+        const slice1 = clicked.slice(0, index)
+        const slice2 = clicked.slice(index+1)
+        const slicesName = [];
+
+        for (let j = 0; j < slice1.length; j++){
+            slicesName.push(slice1[j])
+        }
+        for (let j = 0; j < slice2.length; j++){
+            slicesName.push(slice2[j])
+        }        
+        setClicked(slicesName);
+    }
 
     return(
         todayHabits.map(habit => (

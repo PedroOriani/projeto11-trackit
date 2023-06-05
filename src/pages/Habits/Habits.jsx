@@ -123,8 +123,16 @@ export default function Habits(){
                             ))}
                         </SCDivDays>
                         <SCDivButtons>
-                            <SCCancel data-test="habit-create-cancel-btn" onClick={cancelHabit}>Cancelar</SCCancel>
-                            <SCSave data-test="habit-create-save-btn" onClick={createHabit}>Salvar</SCSave>
+                            <SCCancel 
+                            data-test="habit-create-cancel-btn" 
+                            onClick={cancelHabit}
+                            disabled={loading}
+                            >Cancelar</SCCancel>
+                            <SCSave 
+                            data-test="habit-create-save-btn" 
+                            onClick={createHabit}
+                            disabled={loading}
+                            >Salvar</SCSave>
                         </SCDivButtons>
                     </SCAddHabito>
                     {habitos.length === 0 && <p>Você não tem nenhum hábito cadastrado ainda. Adicione um hábito para começar a trackear!</p>}
