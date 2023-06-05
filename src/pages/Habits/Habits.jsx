@@ -119,7 +119,7 @@ export default function Habits(){
                             <SCSave data-test="habit-create-save-btn" onClick={createHabit}>Salvar</SCSave>
                         </SCDivButtons>
                     </SCAddHabito>
-                    <p>Você não tem nenhum hábito cadastrado ainda. Adicione um hábito para começar a trackear!</p>
+                    {habitos.length === 0 && <p>Você não tem nenhum hábito cadastrado ainda. Adicione um hábito para começar a trackear!</p>}
                     <MyHabit data-test="habit-container"/>
                 </SCContainerHabits>
             </SCBodyHabits>

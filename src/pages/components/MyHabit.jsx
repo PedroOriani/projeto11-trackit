@@ -7,7 +7,7 @@ export default function MyHabit() {
 
     const weekDays = ['D', 'S', 'T', 'Q', 'Q', 'S', 'S'];
 
-    const {dataUser, setDataUser, habitos, setHabitos} = useContext(DatasContext)
+    const {habitos} = useContext(DatasContext)
 
     const habits = habitos
 
@@ -20,7 +20,6 @@ export default function MyHabit() {
                         <SCDays 
                         data-test="habit-day" 
                         key={i}
-                        selected={habitos[i].days.includes(i)}
                         >{day}</SCDays>
                     ))}
                 </SCDivDays>

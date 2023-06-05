@@ -1,23 +1,38 @@
 import styled from 'styled-components'
 import {BsFillCheckSquareFill} from 'react-icons/bs'
+import { useState, useContext, useEffect } from 'react'
+import DatasContext from '../components/DatasContext'
+import axios from 'axios'
 
 export default function Habit() {
 
-    const habits = [
-        { "id": 3 , "name": "Acordar" , "done": true , "currentSequence": 1 , "highestSequence": 1 }, 
-        { "id": 4 , "name": "Dormir" , "done": true , "currentSequence": 3 , "highestSequence": 18},
-        { "id": 5 , "name": "Comer" , "done": true , "currentSequence": 11 , "highestSequence": 11},
-        { "id": 3 , "name": "Acordar" , "done": true , "currentSequence": 1 , "highestSequence": 1 }, 
-        { "id": 4 , "name": "Dormir" , "done": true , "currentSequence": 3 , "highestSequence": 18},
-        { "id": 5 , "name": "Comer" , "done": true , "currentSequence": 11 , "highestSequence": 11}
-    ];
+    const {dataUser} = useContext(DatasContext)
+
+    const [todayHabits, setTodayHabits] = useState([]);
+
+    const token = {
+        headers:{
+          Authorization: `Bearer ${dataUser.token}`
+        }
+    };
+
+    useEffect( () => {
+
+            const URL = 'https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/habits/today';
+
+            const promise = axios.get(URL, token);
+    
+            promise.then( resposta => setTodayHabits(resposta.data));    
+            promise.catch( erro => alert(erro.response));       
+    
+      }, []);
 
     function checkTask (i){
         
     }
 
     return(
-        habits.map((habit, i) => (
+        todayHabits.map((habit, i) => (
             <SCHabit key={i}>
                 <SCContainerText>
                     <SCTitle data-test="today-habit-name">{habit.name}</SCTitle>
