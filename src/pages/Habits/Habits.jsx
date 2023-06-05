@@ -1,15 +1,59 @@
 import styled from "styled-components"
 import Header from "../components/Header"
 import Footer from "../components/Footer"
-import Days from '../components/Days'
 import MyHabit from "../components/MyHabit"
 import { BsFillPlusSquareFill } from 'react-icons/bs'
 import { ThreeDots } from 'react-loader-spinner'
-import { useState, useContext } from 'react'
+import { useState, useContext, useEffect } from 'react'
+import DatasContext from '../components/DatasContext'
+import axios from 'axios'
 
 export default function Habits(){
 
     const [qntHabitos, setQntHabitos] = useState([]);
+    const [add, setAdd] = useState(0);
+    const [select, setSelect] = useState([])
+    const [newHabitName, setNewHabitName] = useState('')
+
+    const days = ['D', 'S', 'T', 'Q', 'Q', 'S', 'S'];
+
+    const {dataUser, setDataUser, habitos, setHabitos} = useContext(DatasContext)
+
+    useEffect( () => {
+            
+            const token = {
+                headers:{
+                  Authorization: `Bearer ${dataUser.token}`
+                }
+            };
+
+            const promise = axios.get(URL, token);
+    
+            promise.then( resposta => setHabitos(resposta.data));    
+            promise.catch( erro => alert(erro.response));       
+    
+      }, []);
+
+    function newHabit(){
+        const sum = add + 1
+        setAdd(sum)
+    }
+
+    function consoleHabits(){
+        return(
+            console.log('alo')
+        )
+    }
+
+    function selectDay(i) {
+        if (select.includes(i)){
+            const isSelected = select.some(d => d === i);
+            const newList = select.filter(d => d !== i);
+            setSelect(newList);
+        }else{
+            setSelect([...select, i]);
+        }
+    }
 
     return(
         <>
@@ -17,13 +61,26 @@ export default function Habits(){
             <SCBodyHabits>
                 <SCContainerHabits>
                     <SCHabitsSup>
-                        <p>Meus hábitos</p>
-                        <SCButtonAdd data-test="habit-create-btn"></SCButtonAdd>
+                        <p onClick={consoleHabits}>Meus hábitos</p>
+                        <SCButtonAdd data-test="habit-create-btn" onClick={newHabit}></SCButtonAdd>
                     </SCHabitsSup>
-                    <SCAddHabito data-test="habit-create-container">
-                        <SCInputHabito data-test="habit-name-input" type="text" placeholder="nome do hábito"></SCInputHabito>
+                    <SCAddHabito data-test="habit-create-container" add={add}>
+                        <SCInputHabito 
+                        data-test="habit-name-input" 
+                        type="text" 
+                        placeholder="nome do hábito"
+                        value={newHabitName}
+                        onChange={(e) => setNewHabitName(e.target.value)}
+                        ></SCInputHabito>
                         <SCDivDays>
-                            <Days />
+                            {days.map((day, i) => (
+                                <SCDays 
+                                data-test="habit-day" 
+                                key={i}
+                                onClick={() => selectDay(i)}
+                                selected = {select.includes(i)}
+                                >{day}</SCDays>
+                            ))}
                         </SCDivDays>
                         <SCDivButtons>
                             <SCCancel data-test="habit-create-cancel-btn">Cancelar</SCCancel>
@@ -101,6 +158,8 @@ const SCAddHabito = styled.div`
     padding: 18px 19px 15px 16px;
 
     margin-top: 20px;
+
+    display: ${props => props.add % 2 === 0 ? 'none' : 'block'}
 `
 
 const SCInputHabito = styled.input`
@@ -184,4 +243,23 @@ const SCSave = styled.button`
 
     border-radius: 4.63636px;
     border: none;
+`
+
+const SCDays = styled.button`
+    width: 30px;
+    height: 30px;
+
+    font-weight: 400;
+    font-size: 19.976px;
+    line-height: 25px;
+
+    border: 1px solid #D5D5D5;
+    border-radius: 5px;
+
+    background: ${props => props.selected ? '#CFCFCF' : 'none'};
+    color: ${props => props.selected ? '#ffffff' : '#DBDBDB'};
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
 `

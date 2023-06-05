@@ -1,5 +1,6 @@
 import styled from "styled-components"
-import { useContext, useState } from 'react'
+import { Link } from 'react-router-dom'
+import { useContext } from 'react'
 import DatasContext from '../components/DatasContext'
 
 export default function Header(){
@@ -8,7 +9,9 @@ export default function Header(){
 
     return(
         <SCHeader data-test="header">
-            <p>TrackIt</p>
+            <Link to='/' style={{textDecoration: 'none'}}>
+                <p>TrackIt</p>
+            </Link>
             <SCDivRight>
             <SCName>{dataUser.name}</SCName>
             <SCPerfilImage data-test="avatar" src={dataUser.image}></SCPerfilImage>
@@ -39,6 +42,10 @@ const SCHeader = styled.div`
     line-height: 49px;
 
     color: #FFFFFF;
+
+    p {
+        color: #FFFFFF;
+    }
 `
 
 const SCDivRight = styled.div`

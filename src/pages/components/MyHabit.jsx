@@ -1,28 +1,31 @@
 import styled from 'styled-components'
-import Days from './Days'
 import {BsTrash} from 'react-icons/bs'
+import { useState, useContext } from 'react'
+import DatasContext from '../components/DatasContext'
 
 export default function MyHabit() {
 
-    const habits = [
-        {
-            id: 1,
-            name: "Nome do hábito",
-            days: [1, 3, 5]
-        },
-        {
-            id: 2,
-            name: "Nome do hábito 2",
-            days: [1, 3, 4, 6]
-        }
-    ];
+    const days = ['D', 'S', 'T', 'Q', 'Q', 'S', 'S'];
+
+    const {dataUser, setDataUser, habitos, setHabitos} = useContext(DatasContext)
+
+    const habits = habitos
+
+    const len = habits.length;
+
+    console.log(habits)
 
     return(
         habits.map((habit, i) => (
             <SCHabit data-test="habit-container" key={i}>
                 <SCName data-test="habit-name">{habit.name}</SCName>
                 <SCDivDays>
-                    <Days />
+                    {days.map((day, i) => (
+                        <SCDays 
+                        data-test="habit-day" 
+                        key={i}
+                        >{day}</SCDays>
+                    ))};
                 </SCDivDays>
                 <SCDelete data-test="habit-delete-btn"/>
             </SCHabit>
@@ -69,4 +72,22 @@ const SCDelete = styled(BsTrash)`
     position: absolute;
     top: 11px;
     right: 10px;
+`
+const SCDays = styled.button`
+    width: 30px;
+    height: 30px;
+
+    font-weight: 400;
+    font-size: 19.976px;
+    line-height: 25px;
+
+    border: 1px solid #D5D5D5;
+    border-radius: 5px;
+
+    background: none; // fazer props para aletrnância de cor
+    color: #DBDBDB; // fazer props para aletrnância de cor
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
 `

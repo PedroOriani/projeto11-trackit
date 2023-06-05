@@ -55,6 +55,7 @@ export default function Register(){
                 data-test="email-input"
                 type="email" 
                 placeholder='email'
+                disable={loading}
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 />
@@ -62,6 +63,7 @@ export default function Register(){
                 data-test="password-input"
                 type="password" 
                 placeholder='senha'
+                disable={loading}
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
                 />
@@ -69,6 +71,7 @@ export default function Register(){
                 data-test="user-name-input"
                 type="text" 
                 placeholder='nome'
+                disable={loading}
                 value={name}
                 onChange={(e) => setName(e.target.value)}
                 />
@@ -76,10 +79,11 @@ export default function Register(){
                 data-test="user-image-input"
                 type="url" 
                 placeholder='foto'
+                disable={loading}
                 value={urlImage}
                 onChange={(e) => setUrlImage(e.target.value)}
                 />
-                <SCSUbmitRegister data-test="signup-btn" type="submit" value="Cadastrar"/>
+                <SCSUbmitRegister data-test="signup-btn" type="submit" value="Cadastrar" disable={loading}/>
                 <Link to ='/'>
                 <SCTextResgister data-test="login-link">Já tem uma conta? Faça login!</SCTextResgister>
                 </Link>

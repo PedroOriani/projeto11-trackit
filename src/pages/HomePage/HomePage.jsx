@@ -11,9 +11,9 @@ export default function HomePage(){
 
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
-    const [loading, setLoading] = useState(false)
+    const [loading, setLoading] = useState(false);
 
-    const {dataUser, setDataUser} = useContext(DatasContext)
+    const {dataUser, setDataUser} = useContext(DatasContext);
 
     const navigate = useNavigate();
 

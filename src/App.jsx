@@ -10,9 +10,10 @@ import DatasContext from './pages/components/DatasContext'
 function App() {
 
   const [dataUser, setDataUser] = useState({});
+  const [habitos, setHabitos] = useState([]);
 
   return (
-    <DatasContext.Provider value={{dataUser, setDataUser}}>
+    <DatasContext.Provider value={{dataUser, setDataUser, habitos, setHabitos}}>
       <BrowserRouter>
         <Routes>
           <Route path='/' element={<HomePage />} />
